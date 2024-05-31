@@ -3,6 +3,12 @@ import { ReturnBook } from "./ReturnBook";
 import { useEffect, useState } from 'react';
 import BookModel from '../../../Models/BookModel';
 import { SpinnerLoading } from '../../Utils/SpinnerLoading';
+import { Link } from 'react-router-dom';
+
+// React’s three lifestyle methods: 
+// Mounting, when the component is first render; 
+// Updating, when the component or state changes; 
+// and lastly, Unmounting.
 
 export const Carousel = () => {
 
@@ -13,11 +19,17 @@ export const Carousel = () => {
 
     // useEffect can trigger more than 1 time: first trigger->component created
     // then will be triggered every time array (of states) changes
+
+    //* when the first page renders: useEffect(() => {}, [])
+    //* when a state changes: useEffect(() => {}, [state])
+    //* when the component unmounts: useEffect(() => {return () = {}}, [])
     useEffect(()=>{
         const fetchBooks = async() => {
             const baseURL: string = "http://localhost:8080/api/books";
 
-            const url: string = `${baseURL}?page=0&size=9`; // page=0: very first page || size=9:only have 9 items listed (cuz carousel only have 3 items listed at a time and swap 3 times)
+            const url: string = `${baseURL}?page=0&size=9`; 
+            // page=0: very first page
+            // size=9:only have 9 items listed (cuz carousel only have 3 items listed at a time and swap 3 times)
             
             const response = await fetch(url);
 
@@ -119,7 +131,8 @@ export const Carousel = () => {
                 </div>
             </div>
             <div className="homepage-carousel-title mt-3">
-                <a className="btn btn-outline-secondary btn-lg" href="#">View More</a>
+                {/* <a className="btn btn-outline-secondary btn-lg" href="#">View More</a> */}
+                <Link className="btn btn-outline-secondary btn-lg" to="/search">View More</Link>
             </div>
         </div>
     );

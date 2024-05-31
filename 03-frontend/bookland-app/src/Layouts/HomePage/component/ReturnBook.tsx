@@ -1,6 +1,7 @@
 import React from 'react'
 import BookModel from '../../../Models/BookModel'
 
+                // React.FC 是 React.FunctionComponent 的简写
                 // specify that props is 'book', which is 'BookModel'
 export const ReturnBook : React.FC<{book:BookModel}> = (props) => {
     return(
